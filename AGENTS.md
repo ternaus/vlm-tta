@@ -3,6 +3,11 @@
 This repository contains research on budgeted visual test-time augmentation for
 frozen vision-language models. See README.md for scope and verification commands.
 
+Write repository documentation, comments, and public artifacts in English.
+The research scope is documented in docs/research.md, grant deliverables in
+docs/grant-commitments.md, and integration work in docs/screamingface-integration.md.
+Keep unresolved protocol choices explicit until they have been decided.
+
 Keep model inference, image-view generation, answer aggregation, and evaluation
 protocols explicit. Adapt existing ScreamingFace components where they satisfy
 the required behavior. Pin dataset and model identities and record image

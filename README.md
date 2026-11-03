@@ -11,9 +11,18 @@ subset of [MMMU](https://mmmu-benchmark.github.io/), with experiments across two
 VLM families. Results will include measured cost, latency, paired uncertainty
 estimates, ablations, and failure cases.
 
-This repository currently contains the project setup. No TTA implementation or
-experimental results have been published yet. Model choices, image-view policies,
-and the evaluation protocol remain to be fixed.
+This repository currently contains the research scope and project setup. No TTA
+implementation or experimental results have been published yet. Model choices,
+image-view policies, and the evaluation protocol remain to be fixed.
+
+## Research documents
+
+- [Research question and evaluation](docs/research.md): the five comparisons,
+  image-view constraints, data protocol, measurements, and expected outputs.
+- [Grant commitments and milestones](docs/grant-commitments.md): the submitted
+  deliverables, relative schedule, publication obligations, and compute budget.
+- [ScreamingFace integration](docs/screamingface-integration.md): verified upstream
+  components, remaining implementation work, and decisions needed before coding.
 
 ## Research support
 
