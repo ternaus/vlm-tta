@@ -1,0 +1,87 @@
+repos:
+  - repo: local
+    hooks:
+      - id: uv-lock-check
+        name: uv lock --check
+        entry: uv lock --check
+        language: system
+        pass_filenames: false
+        files: ^(pyproject\.toml|uv\.lock)$
+      - id: keep-complexity-limits
+        name: Keep default Ruff complexity limits
+        language: pygrep
+        entry: >-
+          (?m)^\s*(?:[\w-]+\.)*["']?max-(?:complexity|public-methods|returns|branches|args|locals|statements|bool-expr|positional-args)["']?\s*=
+        files: (^|/)(pyproject\.toml|\.?ruff\.toml)$
+      - id: mypy
+        name: mypy
+        entry: uv run --locked --no-sync --extra dev mypy
+        language: system
+        pass_filenames: false
+        files: ^(src|tests|examples)/.*\.py$
+      - id: pyrefly-check
+        name: Pyrefly type check
+        entry: uv run --locked --no-sync --extra dev pyrefly check
+        language: system
+        pass_filenames: false
+        files: ^src/.*\.py$
+  - repo: https://github.com/ternaus/ruff-policy-hooks
+    rev: v0.4.0
+    hooks:
+      - id: check-ruff-suppressions
+        name: Protect mandatory Ruff complexity diagnostics
+        args: [--protect=C90,PLR09]
+  - repo: https://github.com/ternaus/opencv-rgb-precommit
+    rev: v0.1.1
+    hooks:
+      - id: check-opencv-rgb
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-ast
+      - id: check-builtin-literals
+      - id: check-case-conflict
+      - id: check-docstring-first
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-yaml
+      - id: check-xml
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: forbid-new-submodules
+      - id: forbid-submodules
+      - id: mixed-line-ending
+      - id: destroyed-symlinks
+      - id: fix-byte-order-marker
+      - id: check-json
+      - id: debug-statements
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: requirements-txt-fixer
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.0
+    hooks:
+      - id: ruff-check
+        exclude: __pycache__/
+        args: [--fix]
+      - id: ruff-format
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: python-check-mock-methods
+      - id: python-use-type-annotations
+      - id: python-check-blanket-noqa
+      - id: text-unicode-replacement-char
+  - repo: https://github.com/Ternaus/numpy-assert-lint
+    rev: v0.2.0
+    hooks:
+      - id: numpy-assert-lint
+        files: ^tests/
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.3
+    hooks:
+      - id: codespell
+        additional_dependencies: ["tomli>=2.4.1"]
