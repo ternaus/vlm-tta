@@ -1,0 +1,32 @@
+name = "mmmu-validation-gemini-flash-gcp-2026-11-15"
+source_base = "3f9b3116c80271fdc760dc8ff29211910f6c55b9"
+engine = "https://fusion.screamingface.ai"
+screamingface_version = "0.1.12"
+model = "openrouter/google/gemini-3-flash-preview"
+prompt = "Answer the multiple-choice question using the image. End with ANSWER: X, where X is the letter of the correct option."
+
+[benchmark]
+id = "inspect-mmmu_multiple_choice"
+revision = "5b008891134ef4c1"
+dataset = "MMMU/MMMU"
+dataset_revision = "171b0ef74cd1704464e6940860968009d8cdd59a"
+split = "validation"
+case_count = 847
+web_search = false
+
+[params]
+temperature = 0
+max_tokens = 1024
+
+[execution]
+capture = true
+use_cache = false
+planning_budget_usd = 10
+
+[client_host]
+platform = "Google Compute Engine"
+zone = "us-central1-a"
+machine_type = "e2-small"
+max_service_runtime_hours = 12
+max_vm_runtime_hours = 13
+authentication = "Cloudflare Access application token"

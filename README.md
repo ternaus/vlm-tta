@@ -11,9 +11,18 @@ subset of [MMMU](https://mmmu-benchmark.github.io/), with experiments across two
 VLM families. Results will include measured cost, latency, paired uncertainty
 estimates, ablations, and failure cases.
 
-This repository currently contains the research scope and project setup. No TTA
-implementation or experimental results have been published yet. Model choices,
-image-view policies, and the evaluation protocol remain to be fixed.
+## Published baseline
+
+Gemini 3 Flash Preview scored **83.59% (708/847)** in a single pass on the pinned
+MMMU multiple-choice `validation` benchmark. The run took 44 minutes and used
+$1.26 of inference. ScreamingFace verified the result on November 15, 2026.
+[Leaderboard entry](https://leaderboard.screamingface.ai/v1/public/scores/020151ad-8990-4133-bf21-806b0ad99d09) ·
+[Experiment record and artifacts](experiments/mmmu-validation-gemini-flash-gcp-2026-11-15.md)
+
+The next comparison pairs four calls on the same image with four calls on
+different views of that image on 141 MMMU `dev` questions. The pilot still needs a
+way to pass the prepared views to the hosted model. ScreamingFace's
+[attachment support](https://github.com/ScreamingFace/screamingface/pull/1588) is in review.
 
 ## Research documents
 
@@ -51,9 +60,8 @@ them. Complexity rules stay enabled in tests too, and a local hook keeps Ruff's
 default complexity limits from being overridden.
 
 Behavior tests belong in `tests/`. Run them with
-`uv run --locked --extra dev pytest`. There are no behavior tests yet; CI starts
-running pytest when test modules are added. Automated tests must run on CPU
-without paid model calls.
+`uv run --locked --extra dev pytest`. CI runs pytest when test modules are
+present. Automated tests run on CPU without paid model calls.
 
 CI checks Python 3.12 and 3.13, runs pre-commit, and verifies that a built wheel
 installs and imports in an isolated environment.
