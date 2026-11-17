@@ -11,18 +11,25 @@ subset of [MMMU](https://mmmu-benchmark.github.io/), with experiments across two
 VLM families. Results will include measured cost, latency, paired uncertainty
 estimates, ablations, and failure cases.
 
-## Published baseline
+## Published baselines
 
-Gemini 3 Flash Preview scored **83.59% (708/847)** in a single pass on the pinned
-MMMU multiple-choice `validation` benchmark. The run took 44 minutes and used
-$1.26 of inference. ScreamingFace verified the result on November 15, 2026.
-[Leaderboard entry](https://leaderboard.screamingface.ai/v1/public/scores/020151ad-8990-4133-bf21-806b0ad99d09) ·
-[Experiment record and artifacts](experiments/mmmu-validation-gemini-flash-gcp-2026-11-15.md)
+Both baselines use Gemini 3 Flash Preview on the same 847 MMMU multiple-choice
+`validation` questions at benchmark revision `5b008891134ef4c1`.
+
+| Method | Accuracy | Inference cost | Results |
+| --- | ---: | ---: | --- |
+| Single pass | 83.59% (708/847) | $1.26 | [Leaderboard](https://leaderboard.screamingface.ai/v1/public/scores/020151ad-8990-4133-bf21-806b0ad99d09) · [Artifacts](experiments/mmmu-validation-gemini-flash-gcp-2026-11-15.md) |
+| Four same-image calls with voting | 86.19% (730/847) | $5.10 | [Leaderboard](https://leaderboard.screamingface.ai/v1/public/scores/e9cf5228-be44-4260-b752-fae652c8534e) · [Artifacts](experiments/mmmu-validation-gemini-flash-same-image-vote-2026-11-17-gcp.md) |
+
+The four-call run uses temperature 0.7 and a 4096-token output limit. The
+single-pass run uses temperature 0 and a 1024-token limit. Image bytes also
+differed between runs on two questions, which both methods answered correctly.
 
 The next comparison pairs four calls on the same image with four calls on
-different views of that image on 141 MMMU `dev` questions. The pilot still needs a
-way to pass the prepared views to the hosted model. ScreamingFace's
-[attachment support](https://github.com/ScreamingFace/screamingface/pull/1588) is in review.
+different views of that image on 141 MMMU `dev` questions. ScreamingFace's
+[attachment support](https://github.com/ScreamingFace/screamingface/pull/1588)
+has merged. The pilot still needs to verify that attachments reach the model on
+the grant engine.
 
 ## Research documents
 

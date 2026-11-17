@@ -1,0 +1,29 @@
+{
+  "benchmark": "inspect-mmmu_multiple_choice",
+  "revision": "5b008891134ef4c1",
+  "run_id": "xqkbr2xK4oJJMkfTTvlmF6bkdauIkHKyFXd3ve4nZtYHt9HbWpRrInI2r2LWitzB",
+  "trace_id": "f1031f162cb5237e6fd1b86a4a1a6635",
+  "case_count": 847,
+  "statuses": {
+    "scored": 847
+  },
+  "finish_reasons": {
+    "stop": 847
+  },
+  "accuracy": 0.8619,
+  "coverage": 1.0,
+  "duration_ms": 3491812,
+  "usage": {
+    "input_tokens": 4609918,
+    "output_tokens": 932161,
+    "cache_read_tokens": 12174,
+    "cache_creation_tokens": 0,
+    "reasoning_tokens": 7,
+    "cost_usd": "5.09596370"
+  },
+  "run_cost_status": "complete",
+  "cache_hits": 0,
+  "capture_status": "complete",
+  "capture_partial_reasons": [],
+  "pinned_cache": "55785451-26f5-4ba0-bbdd-e979faf2e931"
+}

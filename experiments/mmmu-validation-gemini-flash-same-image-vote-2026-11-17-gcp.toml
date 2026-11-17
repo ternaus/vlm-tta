@@ -1,0 +1,36 @@
+name = "mmmu-validation-gemini-flash-same-image-vote-2026-11-17-gcp"
+source_base = "55bb44e1a5e494356c62790dd4ef81a59c6c8f1d"
+engine = "https://fusion.screamingface.ai"
+screamingface_version = "0.1.12"
+model = "openrouter/google/gemini-3-flash-preview"
+prompt = "Answer the multiple-choice question using the image. End with ANSWER: X, where X is the letter of the correct option."
+
+[benchmark]
+id = "inspect-mmmu_multiple_choice"
+revision = "5b008891134ef4c1"
+dataset = "MMMU/MMMU"
+dataset_revision = "171b0ef74cd1704464e6940860968009d8cdd59a"
+split = "validation"
+case_count = 847
+web_search = false
+
+[params]
+temperature = 0.7
+max_tokens = 4096
+
+[resampling]
+name = "gemini-3-flash-same-image-vote-4"
+seeds = [0, 1, 2, 3]
+answer_pattern = '\bANSWER:\s*([A-J])\b'
+
+[execution]
+capture = true
+use_cache = false
+planning_budget_usd = 50
+
+[client_host]
+platform = "Google Compute Engine"
+zone = "us-central1-a"
+machine_type = "e2-small"
+max_service_runtime_minutes = 135
+max_vm_runtime_minutes = 150

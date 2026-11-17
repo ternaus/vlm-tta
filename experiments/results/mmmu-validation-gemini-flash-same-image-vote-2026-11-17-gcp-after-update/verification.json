@@ -1,0 +1,26 @@
+{
+  "cases": 847,
+  "changed_serialized_inputs": [
+    121,
+    132
+  ],
+  "cases_with_equal_member_input_tokens": 829,
+  "earned_correct": 730,
+  "parsed_answers": 847,
+  "baseline_correct_same_cases": 708,
+  "improved": 31,
+  "regressed": 9,
+  "with_tied_vote": 29,
+  "votes_cast": {
+    "4": 847
+  },
+  "model_calls": 3388,
+  "finish_reasons": {
+    "stop": 3388
+  },
+  "provider_spans": 847,
+  "provider_span_latency_median_s": 3.353,
+  "provider_span_latency_p95_s": 10.025,
+  "cost_usd": "5.09596370",
+  "duration_ms": 3491812
+}
